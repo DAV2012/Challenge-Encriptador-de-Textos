@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+
+<head>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Encriptador de texto - Alura Challenges ONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    
+
+</head>
+
+<body>
+
+    <main>
+        
+
+            
+        <section>
+            <header class="logo"><img src="img/logo.png" ></header>
+        </section> 
+        
+            
+        <div class="contenedor">
+            <section class="contenedor-input">
+                
+                <textarea placeholder="Ingrese el texto aqui" id="txtInput"></textarea>
+
+                <h2 class="contenedor-alertaInfo"><img src="img/Vector_mensaje.png" class="alertaInfo">Solo letras minúsculas y sin acentos</h2>
+                <div class = "contenedor-input-btn">
+                    <button class="boton-encriptar" onclick="encriptar()">Encriptar</button>
+                    <button class="boton-desencriptar" onclick="desencriptar()">Desencriptar</button>
+                </div>
+            </section>
+            
+            
+            <section  class="contenedor-ouput">
+               
+                 <div id="mensaje-output" class="mensaje-ouput">
+                    <textarea  id="txtOuput" ></textarea>
+                    <button class="boton-copy" id="copy">Desencriptar</button>
+                 </div>
+                    
+                        
+                 <div id="mensajeContainer">
+                    <img id="muneco" src="img/Muñeco.png" >
+                    <h2 class="mensaje-no-encontrado">Ningún mensaje fue encontrado<p>Ingresa el texto que desees encriptar o
+                            desencriptar.</p>
+                    </h2>
+                </div>
+
+                    
+            
+            </section>
+        </div>
+
+
+        
+    </main>
+
+    <footer>
+        <div class="footer">
+            <h3>® Duver Andrés Vera</h3>
+        </div>
+    </footer>
+
+
+    <script>
+
+
+        document.getElementById("mensaje-output").style.display = "none";
+       
+
+        function encriptar() {
+
+            var mensaje = document.getElementById("txtInput").value;
+            var string = mensaje.split("");
+
+            if (string.length == 0) {
+                document.getElementById("mensaje-output").style.display = "none";
+                
+            }
+
+
+
+            if (0 < string.length) {
+
+
+                var mensajeEncriptado = mensaje.replaceAll(/e/g, "enter");
+                mensajeEncriptado = mensajeEncriptado.replace(/i/g, "imes");
+                mensajeEncriptado = mensajeEncriptado.replace(/a/g, "ai");
+                mensajeEncriptado = mensajeEncriptado.replace(/o/g, "ober");
+                mensajeEncriptado = mensajeEncriptado.replace(/u/g, "ufat");
+                document.getElementById("mensajeContainer").style.display="none";
+                document.getElementById("mensaje-output").style.display = "flex";
+                txtOuput.value = mensajeEncriptado;
+                txtOuput.display = "block";
+            }
+        }
+
+
+        function desencriptar() {
+
+            var txtInput = document.getElementById("txtInput").value;
+            var string = txtInput.split("");
+
+
+            if (string.length == 0) {
+                document.getElementById("txtOuput").style.visibility = "hidden";
+                document.getElementById("copy").style.visibility = "hidden";
+                document.getElementById("mensajeContainer").style.visibility = "visible";
+
+            }
+
+            if (0 < string.length) {
+
+                console.log(string)
+
+
+                var txtInput = document.getElementById("txtInput").value;
+                var mensajeEncriptado = txtInput.replace(/enter/g, "e");
+                mensajeEncriptado = mensajeEncriptado.replace(/imes/g, "i");
+                mensajeEncriptado = mensajeEncriptado.replace(/ai/g, "a");
+                mensajeEncriptado = mensajeEncriptado.replace(/ober/g, "o");
+                mensajeEncriptado = mensajeEncriptado.replace(/ufat/g, "u");
+                document.getElementById("mensajeContainer").style.visibility="hidden";
+                document.getElementById("txtOuput").style.visibility = "visible";
+                document.getElementById("copy").style.visibility = "visible";
+                txtOuput.value = mensajeEncriptado;
+                txtOuput.display = "block";
+            }
+        }
+
+
+        function copy() {
+
+            var copyText = document.querySelector("#txtOuput");
+            copyText.select();
+            document.execCommand("copy");
+        }
+
+        document.querySelector("#copy").addEventListener("click", copy);
+        
+
+
+    </script>
+
+
+</body>
